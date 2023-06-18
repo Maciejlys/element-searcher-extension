@@ -1,7 +1,13 @@
 const input = document.getElementById("input");
+const button = document.getElementById("button");
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("button").addEventListener("click", callback);
+  button.addEventListener("click", callback);
+  input.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      button.click();
+    }
+  });
   input.addEventListener("change", () => {
     chrome.storage.sync.set({ input: input.value });
   });
