@@ -33,10 +33,10 @@ async function callback() {
         selectors.forEach((selector) => {
           try {
             root.querySelectorAll(selector).forEach((element) => {
-              (element.style.border = "3px hotpink solid"),
+              (element.style.outline = "3px hotpink solid"),
                 (element.style.position = "relative"),
                 element.firstChild.style &&
-                  ((element.firstChild.style.border = "3px hotpink solid"),
+                  ((element.firstChild.style.outline = "3px hotpink solid"),
                   (element.firstChild.style.position = "relative"));
               const tag = document.createElement("span");
               (tag.innerText = selector),
