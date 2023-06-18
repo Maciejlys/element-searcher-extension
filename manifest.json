@@ -5,12 +5,13 @@
   "icons": {
     "16": "assets/16.png",
     "32": "assets/32.png",
+    "128": "assets/128.png",
     "192": "assets/192.png",
     "512": "assets/512.png"
   },
-  "permissions": ["tabs", "storage", "scripting", "activeTab", "cookies"],
+  "permissions": ["tabs", "storage", "scripting", "activeTab"],
   "action": {
     "default_popup": "index.html"
   },
-  "description": "Find elements by given selectors - they will be outlined in pink color and a information of selector will be visible above them ex. .pink textarea"
+  "description": "Find elements by given selectors - they will be outlined in pink color and a information of selector will be visible"
 }
