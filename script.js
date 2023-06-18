@@ -33,21 +33,23 @@ async function callback() {
         selectors.forEach((selector) => {
           try {
             root.querySelectorAll(selector).forEach((element) => {
-              (element.style.outline = "3px hotpink solid"),
-                (element.style.position = "relative"),
-                element.firstChild.style &&
-                  ((element.firstChild.style.outline = "3px hotpink solid"),
-                  (element.firstChild.style.position = "relative"));
+              element.style.outline = "3px hotpink solid";
+              element.style.position = "relative";
+              if (element.firstChild.style) {
+                element.firstChild.style.outline = "3px hotpink solid";
+                element.firstChild.style.position = "relative";
+              }
               const tag = document.createElement("span");
-              (tag.innerText = selector),
-                (tag.style.position = "absolute"),
-                (tag.style.fontSize = "14px"),
-                (tag.style.top = "-17px"),
-                (tag.style.left = "-3px"),
-                (tag.style.padding = "0 8px"),
-                (tag.style.lineHeight = "1"),
-                (tag.style.backgroundColor = "hotpink"),
-                element.appendChild(tag);
+              tag.innerText = selector;
+              tag.style.color = "white";
+              tag.style.position = "absolute";
+              tag.style.fontSize = "14px";
+              tag.style.top = "-17px";
+              tag.style.left = "-3px";
+              tag.style.padding = "0 8px";
+              tag.style.lineHeight = "1";
+              tag.style.backgroundColor = "hotpink";
+              element.appendChild(tag);
             });
           } catch (e) {
             console.log("No components on this page!", selectors, e);
