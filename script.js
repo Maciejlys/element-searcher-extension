@@ -23,12 +23,10 @@ async function callback() {
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: (selectors) => {
-      roots = [
-        document.documentElement,
-        document.querySelector("iframe")
-          ? document.querySelector("iframe").contentWindow.document.documentElement
-          : null,
-      ];
+      roots = [document.documentElement];
+      if (document.querySelector("iframe")) {
+        roots.push(document.querySelector("iframe").contentWindow.document.documentElement);
+      }
       roots.forEach((root) => {
         selectors.forEach((selector) => {
           try {
