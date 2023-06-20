@@ -23,6 +23,21 @@ async function callback() {
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: (selectors) => {
+      colors = [
+        "hotpink",
+        "deepPink",
+        "MediumVioletRed",
+        "PaleVioletRed",
+        "Coral",
+        "Tomato",
+        "Orange",
+        "Chocolate",
+        "Peru",
+        "Sienna",
+        "SaddleBrown",
+        "Maroon",
+        "Crimson",
+      ];
       roots = [document.documentElement];
       if (document.querySelector("iframe")) {
         roots.push(document.querySelector("iframe").contentWindow.document.documentElement);
@@ -30,11 +45,12 @@ async function callback() {
       roots.forEach((root) => {
         selectors.forEach((selector) => {
           try {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
             root.querySelectorAll(selector).forEach((element) => {
-              element.style.outline = "3px hotpink solid";
+              element.style.outline = `3px ${randomColor} solid`;
               element.style.position = "relative";
               if (element.firstChild.style) {
-                element.firstChild.style.outline = "3px hotpink solid";
+                element.firstChild.style.outline = `3px ${randomColor} solid`;
                 element.firstChild.style.position = "relative";
               }
               const tag = document.createElement("span");
@@ -46,7 +62,7 @@ async function callback() {
               tag.style.left = "-3px";
               tag.style.padding = "0 8px";
               tag.style.lineHeight = "1";
-              tag.style.backgroundColor = "hotpink";
+              tag.style.backgroundColor = randomColor;
               element.appendChild(tag);
             });
           } catch (e) {
