@@ -12,7 +12,7 @@ const backgroundScript = (selectors, colors) => {
 
   const injectSpanElement = (element, randomColor, selector) => {
     const tag = document.createElement("span");
-    tag.innerText = selector;
+    tag.innerHTML = selector;
     tag.style.color = "white";
     tag.style.position = "absolute";
     tag.style.fontSize = "14px";
