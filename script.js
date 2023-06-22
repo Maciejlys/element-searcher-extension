@@ -18,7 +18,7 @@ const ColorList = [
   "Crimson",
 ];
 
-const initializeInputs = () => {
+const attachEventListeners = () => {
   const inputElement = document.getElementById("input");
   const buttonElement = document.getElementById("button");
 
@@ -30,7 +30,7 @@ const initializeInputs = () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  initializeInputs();
+  attachEventListeners();
 
   chrome.storage.sync.get(["input"], result => {
     input.value = result.input || "";
@@ -72,7 +72,7 @@ const backgroundScript = (selectors, colors) => {
     element.appendChild(tag);
   };
 
-  roots = [document.documentElement];
+  const roots = [document.documentElement];
   if (document.querySelector("iframe")) {
     roots.push(document.querySelector("iframe").contentWindow.document.documentElement);
   }
