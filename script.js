@@ -1,5 +1,5 @@
 const EventKey = {
-  ENTER: 'enter'
+  ENTER: 'Enter'
 };
 
 const ColorList = [
@@ -23,7 +23,7 @@ const attachEventListeners = () => {
   const buttonElement = document.getElementById("button");
 
   buttonElement.addEventListener("click", () => handleFormSubmit(inputElement));
-  inputElement.addEventListener("keypress", event => event.key === EventKey.ENTER && buttonElement.click());
+  inputElement.addEventListener("keypress", event => event.key === EventKey.ENTER && handleFormSubmit(inputElement));
   inputElement.addEventListener("change", () => {
     chrome.storage.sync.set({ input: inputElement.value });
   });
