@@ -1,0 +1,21 @@
+{
+  "name": "element-searcher-extension",
+  "version": "1.0.0",
+  "description": "Find elements by given selectors - they will be outlined in pink color and a information of selector will be visible",
+  "scripts": {
+    "watch": "webpack --mode=development --watch --config config/webpack.config.js",
+    "build": "webpack --mode=production --config config/webpack.config.js",
+    "pack": "node pack.js",
+    "repack": "npm run build && npm run pack"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.10",
+    "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.9.0"
+  }
+}
