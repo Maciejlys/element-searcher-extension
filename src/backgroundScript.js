@@ -35,8 +35,6 @@ const backgroundScript = (selectors, colors) => {
         root.querySelectorAll(selector).forEach((element) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
-
-          count++;
         });
       } catch (e) {
         console.log("No components on this page!", selectors, e);
