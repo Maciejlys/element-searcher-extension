@@ -1,15 +1,15 @@
 import { EventKey } from "./consts";
 import handleFormSubmit from "./handleFormSubmit";
 
-let inputElement, buttonElement, amountFoundElement;
-
 const initilizeElementsRefrences = () => {
-  inputElement = document.getElementById("input");
-  buttonElement = document.getElementById("button");
-  amountFoundElement = document.getElementById("amountFound");
+  const inputElement = document.getElementById("input");
+  const buttonElement = document.getElementById("button");
+  const amountFoundElement = document.getElementById("amountFound");
+
+  return [inputElement, buttonElement, amountFoundElement];
 };
 
-const attachEventListeners = () => {
+const attachEventListeners = (inputElement, buttonElement, amountFoundElement) => {
   buttonElement.addEventListener("click", () => handleFormSubmit(inputElement, amountFoundElement));
   inputElement.addEventListener(
     "keypress",
@@ -21,8 +21,8 @@ const attachEventListeners = () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  initilizeElements();
-  attachEventListeners();
+  const references = initilizeElementsRefrences();
+  attachEventListeners(...references);
 
   chrome.storage.sync.get(["input"], (result) => {
     input.value = result.input || "";
