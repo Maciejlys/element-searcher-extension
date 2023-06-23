@@ -1,7 +1,7 @@
 import { ColorList } from "./consts";
-import { backgroundScript } from "./backgroundScript";
+import backgroundScript from "./backgroundScript";
 
-export async function handleFormSubmit(input) {
+export default handleFormSubmit = async (input) => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const selectors = input.value.split(" ");
 
@@ -10,4 +10,4 @@ export async function handleFormSubmit(input) {
     func: backgroundScript,
     args: [selectors, ColorList],
   });
-}
+};

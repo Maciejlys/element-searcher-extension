@@ -1,4 +1,4 @@
-export const backgroundScript = (selectors, colors) => {
+export default backgroundScript = (selectors, colors) => {
   const injectElementStyle = (element, randomColor) => {
     element.style.outline = `3px ${randomColor} solid`;
     element.style.position = "relative";

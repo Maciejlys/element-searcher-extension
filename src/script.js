@@ -1,5 +1,5 @@
 import { EventKey } from "./consts";
-import { handleFormSubmit } from "./handleFormSubmit";
+import handleFormSubmit from "./handleFormSubmit";
 
 const attachEventListeners = () => {
   const inputElement = document.getElementById("input");
