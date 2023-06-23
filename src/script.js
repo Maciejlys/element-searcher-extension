@@ -3,7 +3,7 @@ import handleFormSubmit from "./handleFormSubmit";
 
 let inputElement, buttonElement, amountFoundElement;
 
-const initilizeElements = () => {
+const initilizeElementsRefrences = () => {
   inputElement = document.getElementById("input");
   buttonElement = document.getElementById("button");
   amountFoundElement = document.getElementById("amountFound");
