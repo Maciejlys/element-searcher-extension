@@ -1,4 +1,6 @@
-export default backgroundScript = (selectors, colors) => {
+const backgroundScript = (selectors, colors) => {
+  let count = 0;
+
   const injectElementStyle = (element, randomColor) => {
     element.style.outline = `3px ${randomColor} solid`;
     element.style.position = "relative";
@@ -33,10 +35,16 @@ export default backgroundScript = (selectors, colors) => {
         root.querySelectorAll(selector).forEach((element) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
+
+          count++;
         });
       } catch (e) {
         console.log("No components on this page!", selectors, e);
       }
     });
   });
+
+  return count;
 };
+
+export default backgroundScript;
