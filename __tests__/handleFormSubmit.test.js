@@ -1,6 +1,5 @@
-import { JSDOM } from "jsdom";
-import { describe, expect, test, afterEach, vi, beforeAll } from "vitest";
-import { handleFormSubmit } from "../src/handleFormSubmit";
+import { describe, expect, test, vi, beforeAll } from "vitest";
+import handleFormSubmit from "../src/handleFormSubmit";
 import { ColorList } from "../src/consts";
 
 describe("handleFormSubmit", () => {

@@ -1,5 +1,5 @@
 import { EventKey } from "./consts";
-import { handleFormSubmit } from "./handleFormSubmit";
+import handleFormSubmit from "./handleFormSubmit";
 
 export const initializeElementsReferences = () => {
   const inputElement = document.getElementById("input");
