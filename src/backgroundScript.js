@@ -30,14 +30,15 @@ const backgroundScript = (selectors, colors) => {
   }
   roots.forEach((root) => {
     selectors.forEach((selector) => {
-      try {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        root.querySelectorAll(selector).forEach((element) => {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      const matchedElements = root.querySelectorAll(selector);
+      if (matchedElements && matchedElements.length > 0) {
+        matchedElements.forEach((element) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
         });
-      } catch (e) {
-        console.log("No components on this page!", selectors, e);
+      } else {
+        console.log("No components on this page!", selectors);
       }
     });
   });
