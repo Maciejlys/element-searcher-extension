@@ -1,5 +1,4 @@
 const backgroundScript = (selectors, colors) => {
-  console.log('Background script');
   let count = 0;
 
   const injectElementStyle = (element, randomColor) => {
