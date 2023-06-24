@@ -1,4 +1,4 @@
-import { describe, expect, test, vi, beforeAll, beforeEach } from "vitest";
+import { describe, expect, test, vi, beforeAll, beforeEach, afterEach } from "vitest";
 import handleFormSubmit from "../src/handleFormSubmit";
 import { ColorList } from "../src/consts";
 
@@ -15,10 +15,11 @@ describe("handleFormSubmit", () => {
         executeScript: () => { }
       }
     };
+    executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
   });
 
-  beforeEach(() => {
-    executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
+  afterEach(() => {
+    vi.resetAllMocks();
   })
 
   test("Should execute script with proper tab id", async () => {
@@ -38,7 +39,7 @@ describe("handleFormSubmit", () => {
     ]);
   });
 
-  test('Should pass proper selectors as arg', async () => {
+  test('Should pass proper selectors as argument', async () => {
     const expectedArgs = ['a', '.kek', 'max'];
     await handleFormSubmit({ value: expectedArgs.join(' ') });
 

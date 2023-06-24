@@ -1,9 +1,10 @@
 import { JSDOM } from "jsdom";
-import { describe, expect, test, afterEach, vi, beforeAll } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import { attachEventListeners, initializeElementsReferences } from "../src/script";
-import handleFormSubmit from '../src/handleFormSubmit';
 
 describe("attachEventListeners", () => {
+
+  let dom;
 
   global.chrome = {
     storage: {
@@ -30,8 +31,12 @@ describe("attachEventListeners", () => {
     return { dom };
   };
 
+  beforeEach(() => {
+    let setup = setupDOM();
+    dom = setup.dom;
+  });
+
   test('Should attach event listeners to input element', () => {
-    setupDOM();
     const elementReferences = initializeElementsReferences();
     const addEventListenerSpy = vi.spyOn(elementReferences[0], 'addEventListener');
     attachEventListeners(...elementReferences);
@@ -45,7 +50,6 @@ describe("attachEventListeners", () => {
   });
 
   test('Should attach event listener to button element', () => {
-    setupDOM();
     const elementReferences = initializeElementsReferences();
     const addEventListenerSpy = vi.spyOn(elementReferences[1], 'addEventListener');
     attachEventListeners(...elementReferences);
@@ -58,7 +62,6 @@ describe("attachEventListeners", () => {
   });
 
   test('Should storage sync input', () => {
-    const { dom } = setupDOM();
     const elementReferences = initializeElementsReferences();
     const inputElement = elementReferences[0];
     attachEventListeners(...elementReferences);
