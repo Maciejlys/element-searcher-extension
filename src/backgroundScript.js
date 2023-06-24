@@ -1,10 +1,11 @@
 const backgroundScript = (selectors, colors) => {
+  console.log('Background script');
   let count = 0;
 
   const injectElementStyle = (element, randomColor) => {
     element.style.outline = `3px ${randomColor} solid`;
     element.style.position = "relative";
-    if (element.firstChild.style) {
+    if (element.firstChild && element.firstChild.style) {
       element.firstChild.style.outline = `3px ${randomColor} solid`;
       element.firstChild.style.position = "relative";
     }

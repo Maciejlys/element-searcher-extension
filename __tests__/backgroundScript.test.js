@@ -45,6 +45,18 @@ describe("backgroundScript", () => {
     expect(subheaderElementStyle).toEqual({});
   });
 
+  test('Should override first child style', () => {
+    const firstChildHTML = `<div id="parent"><div>child</div></div>`;
+    const { document } = setupDOM(firstChildHTML, ['div#parent']);
+    const parentElement = document.getElementById('parent');
+    const firstChildElement = parentElement.firstChild;
+    const firstChildElementStyles = firstChildElement.style._values;
+    expect(firstChildElementStyles).toStrictEqual({
+      outline: "3px red solid",
+      position: "relative",
+    });
+  });
+
   test("Should inject a span element", () => {
     const { headerElement } = setupDOM();
     const injectedSpanElement = headerElement.getElementsByTagName("span")[0];
