@@ -4,7 +4,7 @@ const backgroundScript = (selectors, colors) => {
   const injectElementStyle = (element, randomColor) => {
     element.style.outline = `3px ${randomColor} solid`;
     element.style.position = "relative";
-    if (element.firstChild.style) {
+    if (element.firstChild && element.firstChild.style) {
       element.firstChild.style.outline = `3px ${randomColor} solid`;
       element.firstChild.style.position = "relative";
     }
@@ -30,16 +30,17 @@ const backgroundScript = (selectors, colors) => {
   }
   roots.forEach((root) => {
     selectors.forEach((selector) => {
-      try {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        root.querySelectorAll(selector).forEach((element) => {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      const matchedElements = root.querySelectorAll(selector);
+      if (matchedElements && matchedElements.length > 0) {
+        matchedElements.forEach((element) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
 
           count++;
         });
-      } catch (e) {
-        console.log("No components on this page!", selectors, e);
+      } else {
+        console.log("No components on this page!", selectors);
       }
     });
   });
