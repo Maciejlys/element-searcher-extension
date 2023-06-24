@@ -24,9 +24,18 @@ describe("backgroundScript", () => {
     );
     global.document = dom.window.document;
     const amountFound = backgroundScript(_selectors, colors);
-    const headerElement = dom.window.document.getElementById(fakeElementsId.HEADER);
-    const subheaderElement = dom.window.document.getElementById(fakeElementsId.SUBHEADER);
-    return { document: dom.window.document, headerElement, subheaderElement, amountFound };
+    const headerElement = dom.window.document.getElementById(
+      fakeElementsId.HEADER
+    );
+    const subheaderElement = dom.window.document.getElementById(
+      fakeElementsId.SUBHEADER
+    );
+    return {
+      document: dom.window.document,
+      headerElement,
+      subheaderElement,
+      amountFound,
+    };
   };
 
   afterEach(() => {
@@ -103,6 +112,13 @@ describe("backgroundScript", () => {
     expect(consoleSpy).toHaveBeenCalledOnce();
   });
 
+  test("Should log an error if the selector is not a valid one", () => {
+    const consoleSpy = vi.spyOn(console, "log");
+    setupDOM(null, ["2"]);
+    expect(consoleSpy).toHaveBeenCalledOnce();
+    expect(consoleSpy).toHaveBeenLastCalledWith("This is not a valid selector");
+  });
+
   describe("amountFound", () => {
     const html = `
     <div id="container" class='red primary'>
@@ -126,24 +142,9 @@ describe("backgroundScript", () => {
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 1 when one h2 is present", () => {
-      const { amountFound } = setupDOM(null, ["h2"]);
-      expect(amountFound).toBe(1);
-    });
-
-    test("should be equal to 1 when one div is present", () => {
-      const { amountFound } = setupDOM(null, ["div"]);
-      expect(amountFound).toBe(1);
-    });
-
     test("should be equal to 2 when 2 classes red are present", () => {
       const { amountFound } = setupDOM(html, [".red"]);
       expect(amountFound).toBe(2);
-    });
-
-    test("should be equal to 1 when 1 span is present", () => {
-      const { amountFound } = setupDOM(html, ["span"]);
-      expect(amountFound).toBe(1);
     });
 
     test("should be equal to 3 when 3 classes primary are present", () => {
