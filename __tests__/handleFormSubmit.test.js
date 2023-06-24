@@ -4,9 +4,9 @@ import { ColorList } from "../src/consts";
 
 describe("handleFormSubmit", () => {
 
-  let executeScriptSpy;
+  let executeScriptSpy, queryTabSpy;
 
-  beforeAll(() => {
+  beforeEach(() => {
     global.chrome = {
       tabs: {
         query: () => { }
@@ -16,6 +16,7 @@ describe("handleFormSubmit", () => {
       }
     };
     executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
+    queryTabSpy = vi.spyOn(global.chrome.tabs, 'query').mockResolvedValue([{ id: 1 }]);
   });
 
   afterEach(() => {
@@ -23,8 +24,6 @@ describe("handleFormSubmit", () => {
   })
 
   test("Should execute script with proper tab id", async () => {
-    const queryTabSpy = vi.spyOn(global.chrome.tabs, 'query').mockResolvedValue([{ id: 1 }]);
-
     await handleFormSubmit({ value: "a" });
 
     const [queryTabArgs] = queryTabSpy.mock.calls[0];
