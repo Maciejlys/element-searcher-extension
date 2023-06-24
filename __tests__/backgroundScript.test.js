@@ -31,6 +31,10 @@ describe("backgroundScript", () => {
     global.document = undefined;
   });
 
+
+
+  
+
   test("Should override element style", () => {
     const { headerElement, subheaderElement } = setupDOM();
     // Check if header style is override;
