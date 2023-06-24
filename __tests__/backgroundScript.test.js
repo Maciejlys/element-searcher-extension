@@ -146,12 +146,12 @@ describe("backgroundScript", () => {
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 2 when 2 classes primary are present", () => {
+    test("should be equal to 3 when 3 classes primary are present", () => {
       const { amountFound } = setupDOM(html, [".primary"]);
       expect(amountFound).toBe(3);
     });
 
-    test("should be equal to 2 when 2 divs are present", () => {
+    test("should be equal to 3 when 3 divs are present", () => {
       const { amountFound } = setupDOM(html, ["div"]);
       expect(amountFound).toBe(3);
     });
