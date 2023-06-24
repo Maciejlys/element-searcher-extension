@@ -1,8 +1,10 @@
-import { describe, expect, test, vi, beforeAll } from "vitest";
+import { describe, expect, test, vi, beforeAll, beforeEach } from "vitest";
 import handleFormSubmit from "../src/handleFormSubmit";
 import { ColorList } from "../src/consts";
 
 describe("handleFormSubmit", () => {
+
+  let executeScriptSpy;
 
   beforeAll(() => {
     global.chrome = {
@@ -15,8 +17,11 @@ describe("handleFormSubmit", () => {
     };
   });
 
+  beforeEach(() => {
+    executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
+  })
+
   test("Should execute script with proper tab id", async () => {
-    const executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
     const queryTabSpy = vi.spyOn(global.chrome.tabs, 'query').mockResolvedValue([{ id: 1 }]);
 
     await handleFormSubmit({ value: "a" });
@@ -34,8 +39,6 @@ describe("handleFormSubmit", () => {
   });
 
   test('Should pass proper selectors as arg', async () => {
-    const executeScriptSpy = vi.spyOn(global.chrome.scripting, 'executeScript').mockResolvedValue();
-
     const expectedArgs = ['a', '.kek', 'max'];
     await handleFormSubmit({ value: expectedArgs.join(' ') });
 

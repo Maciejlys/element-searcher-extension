@@ -12,7 +12,7 @@ const backgroundScript = (selectors, colors) => {
 
   const injectSpanElement = (element, randomColor, selector) => {
     const tag = document.createElement("span");
-    tag.innerHTML = selector;
+    tag.innerText = selector;
     tag.style.color = "white";
     tag.style.position = "absolute";
     tag.style.fontSize = "14px";
@@ -36,6 +36,8 @@ const backgroundScript = (selectors, colors) => {
         matchedElements.forEach((element) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
+
+          count++;
         });
       } else {
         console.log("No components on this page!", selectors);

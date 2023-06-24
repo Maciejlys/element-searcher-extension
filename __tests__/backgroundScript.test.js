@@ -74,7 +74,7 @@ describe("backgroundScript", () => {
     expect(injectedSpanElement).not.undefined;
 
     // Check tag element value
-    const spanElementContent = injectedSpanElement.innerHTML;
+    const spanElementContent = injectedSpanElement.innerText;
     expect(spanElementContent).toEqual(selectors[0]);
   });
 
