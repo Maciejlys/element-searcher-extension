@@ -121,37 +121,37 @@ describe("backgroundScript", () => {
       expect(amountFound).toBe(0);
     });
 
-    test("should be equal to 1", () => {
+    test("should be equal to 1 when one h1 is present", () => {
       const { amountFound } = setupDOM(null, ["h1"]);
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 1", () => {
+    test("should be equal to 1 when one h2 is present", () => {
       const { amountFound } = setupDOM(null, ["h2"]);
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 1", () => {
+    test("should be equal to 1 when one div is present", () => {
       const { amountFound } = setupDOM(null, ["div"]);
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 2", () => {
+    test("should be equal to 2 when 2 classes red are present", () => {
       const { amountFound } = setupDOM(html, [".red"]);
       expect(amountFound).toBe(2);
     });
 
-    test("should be equal to 2", () => {
+    test("should be equal to 1 when 1 span is present", () => {
       const { amountFound } = setupDOM(html, ["span"]);
       expect(amountFound).toBe(1);
     });
 
-    test("should be equal to 2", () => {
+    test("should be equal to 2 when 2 classes primary are present", () => {
       const { amountFound } = setupDOM(html, [".primary"]);
       expect(amountFound).toBe(3);
     });
 
-    test("should be equal to 2", () => {
+    test("should be equal to 2 when 2 divs are present", () => {
       const { amountFound } = setupDOM(html, ["div"]);
       expect(amountFound).toBe(3);
     });
