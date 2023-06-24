@@ -19,10 +19,6 @@ describe("handleFormSubmit", () => {
     queryTabSpy = vi.spyOn(global.chrome.tabs, 'query').mockResolvedValue([{ id: 1 }]);
   });
 
-  afterEach(() => {
-    vi.resetAllMocks();
-  })
-
   test("Should execute script with proper tab id", async () => {
     await handleFormSubmit({ value: "a" });
 
@@ -47,6 +43,16 @@ describe("handleFormSubmit", () => {
       expectedArgs,
       ColorList
     ]);
+
+  });
+
+  test('Should inject text into amountFound', async () => {
+    const fakeAmountFoundElement = { innerText: "" };
+    await handleFormSubmit({ value: "a" }, fakeAmountFoundElement);
+
+    const [, callback] = executeScriptSpy.mock.calls[0];
+    callback([{ result: 123 }]);
+    expect(fakeAmountFoundElement.innerText).toEqual("123 elements found with given selectors");
   });
 
 });
