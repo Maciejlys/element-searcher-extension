@@ -20,7 +20,7 @@ export const attachEventListeners = (inputElement, buttonElement, amountFoundEle
   });
 };
 
-Object.keys(global).includes('document') &&
+global.document &&
   document.addEventListener("DOMContentLoaded", function () {
     const references = initializeElementsReferences();
     attachEventListeners(...references);
