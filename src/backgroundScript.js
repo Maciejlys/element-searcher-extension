@@ -1,6 +1,8 @@
 const backgroundScript = (selectors, colors) => {
   let count = 0;
 
+  if (!selectors.length) return 0;
+
   const injectElementStyle = (element, randomColor) => {
     element.style.outline = `3px ${randomColor} solid`;
     element.style.position = "relative";
@@ -28,6 +30,7 @@ const backgroundScript = (selectors, colors) => {
   if (document.querySelector("iframe")) {
     roots.push(document.querySelector("iframe").contentWindow.document.documentElement);
   }
+
   roots.forEach((root) => {
     selectors.forEach((selector) => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];

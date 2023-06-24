@@ -3,7 +3,7 @@ import backgroundScript from "./backgroundScript";
 
 const handleFormSubmit = async (input, amountFound) => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  const selectors = input.value.split(" ");
+  const selectors = input.value ? input.value.split(" ") : [];
 
   await chrome.scripting.executeScript(
     {
