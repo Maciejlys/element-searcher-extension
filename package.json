@@ -6,6 +6,7 @@
     "watch": "webpack --mode=development --watch --config config/webpack.config.js",
     "build": "webpack --mode=production --config config/webpack.config.js",
     "test": "vitest --reporter verbose",
+    "test:run": "vitest run",
     "pack": "node pack.js",
     "repack": "npm run build && npm run pack",
     "lint": "eslint \"{src,public,__test__}/**/*.js\" --fix"
