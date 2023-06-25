@@ -9,7 +9,7 @@
     "test:run": "vitest run",
     "pack": "node pack.js",
     "repack": "npm run build && npm run pack",
-    "lint": "eslint \"{src,public,__tests__}/**/*.js\" --fix"
+    "lint": "eslint \"{src,public,__tests__}/**/*.js\""
   },
   "devDependencies": {
     "adm-zip": "^0.5.10",
