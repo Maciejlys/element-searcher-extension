@@ -1,4 +1,5 @@
 const backgroundScript = (selectors, colors) => {
+  if (!selectors.length) return 0;
   let count = 0;
 
   const injectElementStyle = (element, randomColor) => {
@@ -30,19 +31,24 @@ const backgroundScript = (selectors, colors) => {
       document.querySelector('iframe').contentWindow.document.documentElement,
     );
   }
+
   roots.forEach((root) => {
     selectors.forEach((selector) => {
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      const matchedElements = root.querySelectorAll(selector);
-      if (matchedElements && matchedElements.length > 0) {
-        matchedElements.forEach((element) => {
-          injectElementStyle(element, randomColor);
-          injectSpanElement(element, randomColor, selector);
+      try {
+        const matchedElements = root.querySelectorAll(selector);
+        if (matchedElements && matchedElements.length > 0) {
+          matchedElements.forEach((element) => {
+            injectElementStyle(element, randomColor);
+            injectSpanElement(element, randomColor, selector);
 
-          count += 1;
-        });
-      } else {
-        console.log('No components on this page!', selectors);
+            count += 1;
+          });
+        } else {
+          console.log('No components on this page!', selectors);
+        }
+      } catch (error) {
+        console.log('This is not a valid selector');
       }
     });
   });
