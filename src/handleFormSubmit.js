@@ -1,20 +1,20 @@
-import {ColorList} from './consts';
+import { ColorList } from './consts';
 import backgroundScript from './backgroundScript';
 
 const handleFormSubmit = async (input, amountFound) => {
-  const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const selectors = input.value.split(' ');
 
   await chrome.scripting.executeScript(
-      {
-        target: {tabId: tab.id},
-        func: backgroundScript,
-        args: [selectors, ColorList],
-      },
-      (res) => {
-        const {result} = res[0];
-        amountFound.innerText = `${result} elements found with given selectors`;
-      },
+    {
+      target: { tabId: tab.id },
+      func: backgroundScript,
+      args: [selectors, ColorList],
+    },
+    (res) => {
+      const { result } = res[0];
+      amountFound.innerText = `${result} elements found with given selectors`;
+    },
   );
 };
 

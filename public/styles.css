@@ -103,7 +103,7 @@ button::after {
 }
 
 button::before {
-  content: "";
+  content: '';
   background: #000;
   width: 120%;
   left: -10%;

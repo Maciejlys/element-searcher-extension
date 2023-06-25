@@ -1,5 +1,5 @@
-import {JSDOM} from 'jsdom';
-import {beforeEach, describe, expect, test, vi} from 'vitest';
+import { JSDOM } from 'jsdom';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
   attachEventListeners,
   initializeElementsReferences,
@@ -18,7 +18,7 @@ describe('attachEventListeners', () => {
       executeScript: () => {},
     },
     tabs: {
-      query: () => [{id: 1}],
+      query: () => [{ id: 1 }],
     },
   };
 
@@ -30,7 +30,7 @@ describe('attachEventListeners', () => {
       </div>
     `);
     global.document = dom.window.document;
-    return {dom};
+    return { dom };
   };
 
   beforeEach(() => {
@@ -39,12 +39,10 @@ describe('attachEventListeners', () => {
   });
 
   test('Should attach event listeners to input element', () => {
-    const elementReferences = initializeElementsReferences();
-    const addEventListenerSpy = vi.spyOn(
-      elementReferences[0],
-      'addEventListener',
-    );
-    attachEventListeners(...elementReferences);
+    const { inputElement, buttonElement, amountFoundElement } =
+      initializeElementsReferences();
+    const addEventListenerSpy = vi.spyOn(inputElement, 'addEventListener');
+    attachEventListeners(inputElement, buttonElement, amountFoundElement);
 
     expect(addEventListenerSpy).toHaveBeenCalledTimes(2);
     const [firstCall, secondCall] = addEventListenerSpy.mock.calls;
@@ -55,12 +53,10 @@ describe('attachEventListeners', () => {
   });
 
   test('Should attach event listener to button element', () => {
-    const elementReferences = initializeElementsReferences();
-    const addEventListenerSpy = vi.spyOn(
-      elementReferences[1],
-      'addEventListener',
-    );
-    attachEventListeners(...elementReferences);
+    const { inputElement, buttonElement, amountFoundElement } =
+      initializeElementsReferences();
+    const addEventListenerSpy = vi.spyOn(buttonElement, 'addEventListener');
+    attachEventListeners(inputElement, buttonElement, amountFoundElement);
 
     expect(addEventListenerSpy).toHaveBeenCalledOnce();
     const [firstCall] = addEventListenerSpy.mock.calls;
@@ -70,9 +66,9 @@ describe('attachEventListeners', () => {
   });
 
   test('Should storage sync input', () => {
-    const elementReferences = initializeElementsReferences();
-    const inputElement = elementReferences[0];
-    attachEventListeners(...elementReferences);
+    const { inputElement, buttonElement, amountFoundElement } =
+      initializeElementsReferences();
+    attachEventListeners(inputElement, buttonElement, amountFoundElement);
 
     const storageSpy = vi.spyOn(global.chrome.storage.sync, 'set');
     inputElement.dispatchEvent(new dom.window.Event('change'));

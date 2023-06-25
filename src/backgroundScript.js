@@ -27,7 +27,7 @@ const backgroundScript = (selectors, colors) => {
   const roots = [document.documentElement];
   if (document.querySelector('iframe')) {
     roots.push(
-        document.querySelector('iframe').contentWindow.document.documentElement,
+      document.querySelector('iframe').contentWindow.document.documentElement,
     );
   }
   roots.forEach((root) => {
@@ -39,7 +39,7 @@ const backgroundScript = (selectors, colors) => {
           injectElementStyle(element, randomColor);
           injectSpanElement(element, randomColor, selector);
 
-          count++;
+          count += 1;
         });
       } else {
         console.log('No components on this page!', selectors);

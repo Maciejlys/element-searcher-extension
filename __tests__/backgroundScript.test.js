@@ -1,5 +1,5 @@
-import {JSDOM} from 'jsdom';
-import {describe, expect, test, afterEach, vi} from 'vitest';
+import { JSDOM } from 'jsdom';
+import { describe, expect, test, afterEach, vi } from 'vitest';
 import backgroundScript from '../src/backgroundScript';
 
 describe('backgroundScript', () => {
@@ -30,7 +30,7 @@ describe('backgroundScript', () => {
     const subheaderElement = dom.window.document.getElementById(
       fakeElementsId.SUBHEADER,
     );
-    return {document: dom.window.document, headerElement, subheaderElement};
+    return { document: dom.window.document, headerElement, subheaderElement };
   };
 
   afterEach(() => {
@@ -39,7 +39,7 @@ describe('backgroundScript', () => {
   });
 
   test('Should override element style', () => {
-    const {headerElement, subheaderElement} = setupDOM();
+    const { headerElement, subheaderElement } = setupDOM();
     // Check if header style is override;
     const headerElementStyle = headerElement.style._values;
     expect(headerElementStyle).toStrictEqual({
@@ -53,8 +53,8 @@ describe('backgroundScript', () => {
   });
 
   test('Should override first child style', () => {
-    const firstChildHTML = `<div id="parent"><div>child</div></div>`;
-    const {document} = setupDOM(firstChildHTML, ['div#parent']);
+    const firstChildHTML = '<div id="parent"><div>child</div></div>';
+    const { document } = setupDOM(firstChildHTML, ['div#parent']);
     const parentElement = document.getElementById('parent');
     const firstChildElement = parentElement.firstChild;
     const firstChildElementStyles = firstChildElement.style._values;
@@ -65,7 +65,7 @@ describe('backgroundScript', () => {
   });
 
   test('Should inject a span element', () => {
-    const {headerElement} = setupDOM();
+    const { headerElement } = setupDOM();
     const injectedSpanElement = headerElement.getElementsByTagName('span')[0];
     expect(injectedSpanElement).not.undefined;
 
@@ -88,7 +88,7 @@ describe('backgroundScript', () => {
   });
 
   test('Should inject element name into span text', () => {
-    const {headerElement} = setupDOM();
+    const { headerElement } = setupDOM();
     const injectedSpanElement = headerElement.getElementsByTagName('span')[0];
     expect(injectedSpanElement).not.undefined;
 
