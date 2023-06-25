@@ -1,23 +1,25 @@
-import { JSDOM } from "jsdom";
-import { beforeEach, describe, expect, test, vi } from "vitest";
-import { attachEventListeners, initializeElementsReferences } from "../src/script";
+import {JSDOM} from 'jsdom';
+import {beforeEach, describe, expect, test, vi} from 'vitest';
+import {
+  attachEventListeners,
+  initializeElementsReferences,
+} from '../src/script';
 
-describe("attachEventListeners", () => {
-
+describe('attachEventListeners', () => {
   let dom;
 
   global.chrome = {
     storage: {
       sync: {
-        set: () => { }
-      }
+        set: () => {},
+      },
     },
     scripting: {
-      executeScript: () => { }
+      executeScript: () => {},
     },
     tabs: {
-      query: () => [{ id: 1 }]
-    }
+      query: () => [{id: 1}],
+    },
   };
 
   const setupDOM = () => {
@@ -28,17 +30,20 @@ describe("attachEventListeners", () => {
       </div>
     `);
     global.document = dom.window.document;
-    return { dom };
+    return {dom};
   };
 
   beforeEach(() => {
-    let setup = setupDOM();
+    const setup = setupDOM();
     dom = setup.dom;
   });
 
   test('Should attach event listeners to input element', () => {
     const elementReferences = initializeElementsReferences();
-    const addEventListenerSpy = vi.spyOn(elementReferences[0], 'addEventListener');
+    const addEventListenerSpy = vi.spyOn(
+      elementReferences[0],
+      'addEventListener',
+    );
     attachEventListeners(...elementReferences);
 
     expect(addEventListenerSpy).toHaveBeenCalledTimes(2);
@@ -51,7 +56,10 @@ describe("attachEventListeners", () => {
 
   test('Should attach event listener to button element', () => {
     const elementReferences = initializeElementsReferences();
-    const addEventListenerSpy = vi.spyOn(elementReferences[1], 'addEventListener');
+    const addEventListenerSpy = vi.spyOn(
+      elementReferences[1],
+      'addEventListener',
+    );
     attachEventListeners(...elementReferences);
 
     expect(addEventListenerSpy).toHaveBeenCalledOnce();
@@ -79,7 +87,9 @@ describe("attachEventListeners", () => {
 
   //   vi.mock("./handleFormSubmit");
 
-  //   const executeScriptSpy = vi.spyOn(chrome.scripting, 'executeScript').mockResolvedValue();
+  // const executeScriptSpy = vi
+  //   .spyOn(chrome.scripting, 'executeScript')
+  //   .mockResolvedValue();
   //   console.log(inputElement);
   //   inputElement.dispatchEvent(new dom.window.Event('click'));
   //   console.log(executeScriptSpy.mock.calls);
@@ -88,5 +98,4 @@ describe("attachEventListeners", () => {
   // test('Should trigger handleFormSubmit on input enter key', () => {
 
   // });
-
 });

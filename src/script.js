@@ -9,17 +9,23 @@ export const initializeElementsReferences = () => {
   return [inputElement, buttonElement, amountFoundElement];
 };
 
-export const attachEventListeners = (inputElement, buttonElement, amountFoundElement) => {
-  buttonElement.addEventListener('click', () => handleFormSubmit(inputElement, amountFoundElement));
+export const attachEventListeners = (
+  inputElement,
+  buttonElement,
+  amountFoundElement,
+) => {
+  buttonElement.addEventListener('click', () =>
+    handleFormSubmit(inputElement, amountFoundElement),
+  );
   inputElement.addEventListener(
-      'keypress',
-      (event) => event.key === EventKey.ENTER && handleFormSubmit(inputElement, amountFoundElement),
+    'keypress',
+    (event) =>
+      event.key === EventKey.ENTER &&
+      handleFormSubmit(inputElement, amountFoundElement),
   );
   inputElement.addEventListener('change', () => {
     chrome.storage.sync.set({input: inputElement.value});
   });
-
-  
 };
 
 global.document &&
