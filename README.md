@@ -36,9 +36,9 @@ You can provide as much space separated selectors as you want or you can chain t
 
 Examples:
 
-- 'a .primary' will find all `<a>` elements and all elements that have .primary class
+- `a .primary` will find all `<a>` elements and all elements that have .primary class
 
-- '.primary.secondary' will find all elements that have both of the classes - notice that there is no space between them
+- `.primary.secondary` will find all elements that have both of the classes - notice that there is no space inbetween
 
 ## Contribution
 
