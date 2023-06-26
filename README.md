@@ -22,7 +22,7 @@ There are two ways you can install this extension
 
 3. run `npm build`
 
-4. go to <a href='chrome://extensions/'>extensions</a>
+4. go to `chrome://extensions/`
 
 5. enable the developer mode
 
