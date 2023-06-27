@@ -13,5 +13,5 @@
   "action": {
     "default_popup": "index.html"
   },
-  "description": "Find elements by given selectors - they will be outlined in pink color and a information of selector will be visible"
+  "description": "Find elements by given selectors - they will be outlined in color and a information of selector will be visible above them"
 }
