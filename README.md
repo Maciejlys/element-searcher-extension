@@ -62,3 +62,5 @@ You can find whatever we are missing at the moment in the TODO section below, or
 - [x] Add husky
 
 - [ ] Add end to end tests with browser emulator
+
+- [ ] Migrate to Typescript
